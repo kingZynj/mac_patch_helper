@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B52B555A2BC4CC21002F50CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B52B55592BC4CC21002F50CC /* main.m */; };
+		B585B3C82BC4CDE8005CD878 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B585B3C72BC4CDE8005CD878 /* utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		B52B55562BC4CC21002F50CC /* mac_patch_helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mac_patch_helper; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52B55592BC4CC21002F50CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B585B3C62BC4CDD2005CD878 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		B585B3C72BC4CDE8005CD878 /* utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				B52B55592BC4CC21002F50CC /* main.m */,
+				B585B3C62BC4CDD2005CD878 /* utils.h */,
+				B585B3C72BC4CDE8005CD878 /* utils.m */,
 			);
 			path = mac_patch_helper;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B52B555A2BC4CC21002F50CC /* main.m in Sources */,
+				B585B3C82BC4CDE8005CD878 /* utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
