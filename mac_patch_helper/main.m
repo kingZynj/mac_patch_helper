@@ -11,6 +11,8 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
+        
         if (argc < 2) {
             NSLog(@"Usage: %s <app_name>", argv[0]);
             return 1;
@@ -68,7 +70,23 @@ int main(int argc, const char * argv[]) {
                 for (NSString *searchMachineCode in x86Data) {
                     NSString *newMachineCode = x86Data[searchMachineCode];
                     NSArray *offsets = searchMachineCodeOffsets(plistFile, searchMachineCode, 1);
-                    NSLog(@"offsets: %@",offsets);
+                    NSLog(@"x86 offsets: %@ -> %@",searchMachineCode,offsets);
+                    if (offsets.count > 0) {
+                        replaceMachineCodeAtOffsets(plistFile, offsets, newMachineCode);
+                        NSLog(@"Replaced machine code for file [%@] with new machine code: [%@]", plistFile, newMachineCode);
+                    } else {
+                        NSLog(@"Machine code not found for file [%@] and search machine code [%@]", plistFile, searchMachineCode);
+                    }
+                }
+            }
+            
+            NSDictionary *armData = patchForPlist[@"arm"];
+            
+            if (armData) {
+                for (NSString *searchMachineCode in armData) {
+                    NSString *newMachineCode = armData[searchMachineCode];
+                    NSArray *offsets = searchMachineCodeOffsets(plistFile, searchMachineCode, 1);
+                    NSLog(@"arm offsets: %@ -> %@",searchMachineCode,offsets);
                     if (offsets.count > 0) {
                         replaceMachineCodeAtOffsets(plistFile, offsets, newMachineCode);
                         NSLog(@"Replaced machine code for file [%@] with new machine code: [%@]", plistFile, newMachineCode);
