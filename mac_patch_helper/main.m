@@ -7,11 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "utils.h"
+#import "encryp_utils.h"
 
 
 int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        
+    @autoreleasepool {      
         
         if (argc < 2) {
             NSLog(@"Usage: %s <app_name>", argv[0]);
