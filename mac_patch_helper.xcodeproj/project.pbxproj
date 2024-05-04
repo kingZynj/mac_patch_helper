@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B52B555A2BC4CC21002F50CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B52B55592BC4CC21002F50CC /* main.m */; };
+		B548A7242BE5DE1100BE51E7 /* mac_patch_helper_test.m in Sources */ = {isa = PBXBuildFile; fileRef = B548A7232BE5DE1100BE51E7 /* mac_patch_helper_test.m */; };
+		B548A7282BE5DF2B00BE51E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B52B55592BC4CC21002F50CC /* main.m */; };
+		B548A7292BE5DF2B00BE51E7 /* utils.h in Sources */ = {isa = PBXBuildFile; fileRef = B585B3C62BC4CDD2005CD878 /* utils.h */; };
+		B548A72A2BE5DF2B00BE51E7 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B585B3C72BC4CDE8005CD878 /* utils.m */; };
+		B548A72B2BE5DF2B00BE51E7 /* encryp_utils.h in Sources */ = {isa = PBXBuildFile; fileRef = B5C1B8BE2BE5056E003D222A /* encryp_utils.h */; };
+		B548A72C2BE5DF2B00BE51E7 /* encryp_utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C1B8BF2BE505B1003D222A /* encryp_utils.m */; };
 		B585B3C82BC4CDE8005CD878 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B585B3C72BC4CDE8005CD878 /* utils.m */; };
 		B5C1B8C02BE505B1003D222A /* encryp_utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C1B8BF2BE505B1003D222A /* encryp_utils.m */; };
 /* End PBXBuildFile section */
@@ -27,6 +33,8 @@
 /* Begin PBXFileReference section */
 		B52B55562BC4CC21002F50CC /* mac_patch_helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mac_patch_helper; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52B55592BC4CC21002F50CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B548A7212BE5DE1100BE51E7 /* mac_patch_helper_test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mac_patch_helper_test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B548A7232BE5DE1100BE51E7 /* mac_patch_helper_test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mac_patch_helper_test.m; sourceTree = "<group>"; };
 		B585B3C62BC4CDD2005CD878 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		B585B3C72BC4CDE8005CD878 /* utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
 		B5C1B8BE2BE5056E003D222A /* encryp_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = encryp_utils.h; sourceTree = "<group>"; };
@@ -41,6 +49,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B548A71E2BE5DE1100BE51E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -48,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				B52B55582BC4CC21002F50CC /* mac_patch_helper */,
+				B548A7222BE5DE1100BE51E7 /* mac_patch_helper_test */,
 				B52B55572BC4CC21002F50CC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				B52B55562BC4CC21002F50CC /* mac_patch_helper */,
+				B548A7212BE5DE1100BE51E7 /* mac_patch_helper_test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +87,14 @@
 				B5C1B8BF2BE505B1003D222A /* encryp_utils.m */,
 			);
 			path = mac_patch_helper;
+			sourceTree = "<group>";
+		};
+		B548A7222BE5DE1100BE51E7 /* mac_patch_helper_test */ = {
+			isa = PBXGroup;
+			children = (
+				B548A7232BE5DE1100BE51E7 /* mac_patch_helper_test.m */,
+			);
+			path = mac_patch_helper_test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -92,6 +117,23 @@
 			productReference = B52B55562BC4CC21002F50CC /* mac_patch_helper */;
 			productType = "com.apple.product-type.tool";
 		};
+		B548A7202BE5DE1100BE51E7 /* mac_patch_helper_test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B548A7252BE5DE1100BE51E7 /* Build configuration list for PBXNativeTarget "mac_patch_helper_test" */;
+			buildPhases = (
+				B548A71D2BE5DE1100BE51E7 /* Sources */,
+				B548A71E2BE5DE1100BE51E7 /* Frameworks */,
+				B548A71F2BE5DE1100BE51E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mac_patch_helper_test;
+			productName = mac_patch_helper_test;
+			productReference = B548A7212BE5DE1100BE51E7 /* mac_patch_helper_test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -102,6 +144,9 @@
 				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					B52B55552BC4CC21002F50CC = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					B548A7202BE5DE1100BE51E7 = {
 						CreatedOnToolsVersion = 15.3;
 					};
 				};
@@ -120,9 +165,20 @@
 			projectRoot = "";
 			targets = (
 				B52B55552BC4CC21002F50CC /* mac_patch_helper */,
+				B548A7202BE5DE1100BE51E7 /* mac_patch_helper_test */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B548A71F2BE5DE1100BE51E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B52B55522BC4CC21002F50CC /* Sources */ = {
@@ -132,6 +188,19 @@
 				B52B555A2BC4CC21002F50CC /* main.m in Sources */,
 				B585B3C82BC4CDE8005CD878 /* utils.m in Sources */,
 				B5C1B8C02BE505B1003D222A /* encryp_utils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B548A71D2BE5DE1100BE51E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B548A7282BE5DF2B00BE51E7 /* main.m in Sources */,
+				B548A7292BE5DF2B00BE51E7 /* utils.h in Sources */,
+				B548A72A2BE5DF2B00BE51E7 /* utils.m in Sources */,
+				B548A72B2BE5DF2B00BE51E7 /* encryp_utils.h in Sources */,
+				B548A72C2BE5DF2B00BE51E7 /* encryp_utils.m in Sources */,
+				B548A7242BE5DE1100BE51E7 /* mac_patch_helper_test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +338,32 @@
 			};
 			name = Release;
 		};
+		B548A7262BE5DE1100BE51E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.voidm.mac-patch-helper-test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		B548A7272BE5DE1100BE51E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.voidm.mac-patch-helper-test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -286,6 +381,15 @@
 			buildConfigurations = (
 				B52B555E2BC4CC21002F50CC /* Debug */,
 				B52B555F2BC4CC21002F50CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B548A7252BE5DE1100BE51E7 /* Build configuration list for PBXNativeTarget "mac_patch_helper_test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B548A7262BE5DE1100BE51E7 /* Debug */,
+				B548A7272BE5DE1100BE51E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "encryp_utils.h"
+#import <Security/Security.h>
 
 @implementation EncryptionUtils
 
@@ -19,12 +20,15 @@
     
     // 生成密钥对
     SecKeyRef publicKey, privateKey;
-    OSStatus status = SecKeyGeneratePair((__bridge CFDictionaryRef)parameters, &publicKey, &privateKey);
-    
-    if (status != errSecSuccess) {
-        NSLog(@"Failed to generate key pair");
+    //    OSStatus status = SecKeyGeneratePair((__bridge CFDictionaryRef)parameters, &publicKey, &privateKey);
+    CFErrorRef error = NULL;
+    privateKey = SecKeyCreateRandomKey((__bridge CFDictionaryRef)parameters, &error);
+    if (error != NULL) {       
+        NSLog(@"密钥生成失败: %@", error);
         return nil;
     }
+    
+    publicKey = SecKeyCopyPublicKey(privateKey);
     
     // 将密钥转换为字符串
     NSData *publicKeyData = CFBridgingRelease(SecKeyCopyExternalRepresentation(publicKey, nil));
@@ -40,8 +44,18 @@
 }
 
 + (NSData *)generateSignatureForData:(NSData *)data privateKey:(NSString *)privateKeyString {
+    NSArray *components = [privateKeyString componentsSeparatedByString:@"\n"];
+    NSMutableArray *cleanedComponents = [NSMutableArray arrayWithArray:components];
+    [cleanedComponents removeObject:@""];
+    [cleanedComponents removeObject:@"-----BEGIN RSA PRIVATE KEY-----"];
+    [cleanedComponents removeObject:@"-----END RSA PRIVATE KEY-----"];
+    [cleanedComponents removeObject:@"-----BEGIN PRIVATE KEY-----"];
+    [cleanedComponents removeObject:@"-----END PRIVATE KEY-----"];
+    // 将剩余的字符串拼接为单个字符串
+    NSString *cleanedString = [cleanedComponents componentsJoinedByString:@""];
+    
     // 解码 Base64 字符串为 NSData
-    NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyString options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:cleanedString options:NSDataBase64DecodingIgnoreUnknownCharacters];
     
     // 创建私钥字典
     NSDictionary *attributes = @{
@@ -109,6 +123,29 @@
     BOOL verificationResult = SecKeyVerifySignature(publicKey, algorithm, (__bridge CFDataRef)policyData, (__bridge CFDataRef)signData, NULL);
     
     return verificationResult;
+}
+
+// PUBLIC,PRIVATE,RSA PRIVATE
++ (NSString *)convertToPEMFormat:(NSData *)keyData withKeyType:(NSString *)keyType {
+    NSString *header = [NSString stringWithFormat:@"-----BEGIN %@ KEY-----\n", keyType];
+    NSString *footer = [NSString stringWithFormat:@"\n-----END %@ KEY-----", keyType];
+    
+    NSString *base64Key = [keyData base64EncodedStringWithOptions:0];
+    NSMutableString *pemKey = [NSMutableString stringWithString:header];
+    
+    // 每64个字符插入换行符
+    NSInteger length = [base64Key length];
+    for (NSInteger i = 0; i < length; i += 64) {
+        NSInteger remainingLength = length - i;
+        NSInteger lineLength = remainingLength > 64 ? 64 : remainingLength;
+        NSString *line = [base64Key substringWithRange:NSMakeRange(i, lineLength)];
+        [pemKey appendString:line];
+        [pemKey appendString:@"\n"];
+    }
+    
+    [pemKey appendString:footer];
+    
+    return pemKey;
 }
 
 @end
