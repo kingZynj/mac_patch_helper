@@ -31,9 +31,16 @@
 - (void) test_ccc_encryp {
 
     
+//  自定义你字符串加密
+//  NSString *message = @"Hello, CCCrypt!";
+//  NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSString *message = @"Hello, CCCrypt!";
-    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+//  自定义 char 数组加密
+    unsigned char charArray[] = {1, 10, 100, 200};
+    NSUInteger length = sizeof(charArray) / sizeof(unsigned char); // 计算数组长度
+    NSMutableData *data = [NSMutableData data];
+    [data appendBytes:charArray length:length];
+
     
     // 加密
     // PKpqMB5NRTTrK2nyiDcg7ZXlN3TmMI2q9vBLq48So+Y=
@@ -46,7 +53,7 @@
 
     NSData *encryptedData = [EncryptionUtils cccEncryptData:data withKey:key iv:iv];
     NSString *encryptedDataBase64 = [encryptedData base64EncodedStringWithOptions:0];
-    NSLog(@"encryptedDataBase64 %@", encryptedDataBase64); // 5HxqsB1DW2UPHea90LJ4mA==
+    NSLog(@"encryptedDataBase64: %@", encryptedDataBase64); // 5HxqsB1DW2UPHea90LJ4mA==
 
     // e2RBDmVbZz/y4IusF2ZNlw==
 //    NSData *encryptedData = [[NSData alloc] initWithBase64EncodedString:@"e2RBDmVbZz/y4IusF2ZNlw==" options:0];
@@ -89,11 +96,11 @@
     // 2025-05-04T09:22:47Z
     NSDictionary *jsonLicense = @{
                 @"deviceID": @"36d7a97a91b82ce5bc8b2609d4e17dae",
-                @"type":@"trial",
+                @"type":@"licensed", // trial:licensed:revoked
                 @"product": @"SURGEMAC5",
                 @"expiresOnDate": @1746350567,
                 // @"p": @"e2RBDmVbZz/y4IusF2ZNlw==",
-                @"p": @"5HxqsB1DW2UPHea90LJ4mA==",                
+                @"p": @"xkIQAJe6FhgdEh3Q1y7+Sg=="
             };
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonLicense options:NSJSONWritingPrettyPrinted error:nil];
