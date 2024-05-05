@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B52513E12BE738D8006D4084 /* encryp_test.m in Sources */ = {isa = PBXBuildFile; fileRef = B52513E02BE738D8006D4084 /* encryp_test.m */; };
 		B52B555A2BC4CC21002F50CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B52B55592BC4CC21002F50CC /* main.m */; };
 		B548A7242BE5DE1100BE51E7 /* mac_patch_helper_test.m in Sources */ = {isa = PBXBuildFile; fileRef = B548A7232BE5DE1100BE51E7 /* mac_patch_helper_test.m */; };
 		B548A7282BE5DF2B00BE51E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B52B55592BC4CC21002F50CC /* main.m */; };
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B52513E02BE738D8006D4084 /* encryp_test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = encryp_test.m; sourceTree = "<group>"; };
 		B52B55562BC4CC21002F50CC /* mac_patch_helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mac_patch_helper; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52B55592BC4CC21002F50CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B548A7212BE5DE1100BE51E7 /* mac_patch_helper_test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mac_patch_helper_test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +94,7 @@
 		B548A7222BE5DE1100BE51E7 /* mac_patch_helper_test */ = {
 			isa = PBXGroup;
 			children = (
+				B52513E02BE738D8006D4084 /* encryp_test.m */,
 				B548A7232BE5DE1100BE51E7 /* mac_patch_helper_test.m */,
 			);
 			path = mac_patch_helper_test;
@@ -195,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52513E12BE738D8006D4084 /* encryp_test.m in Sources */,
 				B548A7282BE5DF2B00BE51E7 /* main.m in Sources */,
 				B548A7292BE5DF2B00BE51E7 /* utils.h in Sources */,
 				B548A72A2BE5DF2B00BE51E7 /* utils.m in Sources */,
