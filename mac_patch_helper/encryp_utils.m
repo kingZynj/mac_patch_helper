@@ -58,17 +58,19 @@
     }
     
     // machdep.cpu.signature
-    uint64_t signature;
-    size_t size_signature = sizeof(signature);
-    if (sysctlbyname("machdep.cpu.signature", &signature, &size_signature, NULL, 0) == 0) {
+    int64_t signature = 0;
+    size_t signatureSize = sizeof(signature);
+    if (sysctlbyname("machdep.cpu.signature",  &signature, &signatureSize, NULL, 0) == 0) {
         
         NSNumber *numberSignature = [NSNumber numberWithLongLong:signature];
         [rbx addObject:numberSignature];
         NSLog(@"machdep.cpu.signature: %@", numberSignature);
         // 591594
+    }else{
+        [rbx addObject:@0];
     }
     // hw.memsize
-    uint64_t memsize;
+    int64_t memsize;
     size_t size_memsize = sizeof(memsize);
     if (sysctlbyname("hw.memsize", &memsize, &size_memsize, NULL, 0) == 0) {
         NSNumber *numberMemsize = [NSNumber numberWithLongLong:memsize];
@@ -91,11 +93,12 @@
     // f0:18:98:1b:24:20
     
     if (!ActivationCompatibilityMode) {
-        // com.nssurge.surge-mac.nsa.wifimac: e05b9a7b7518c259c5bf6d2f5abf6bd7/f0:18:98:1b:24:20       
+        // com.nssurge.surge-mac.nsa.wifimac: e05b9a7b7518c259c5bf6d2f5abf6bd7/f0:18:98:1b:24:20
     }
     
     NSString *joinedString = [rbx componentsJoinedByString:@"/"];
     // 9B37DA4D-B136-5AAE-BED8-F16E5BB0E199/MacBookPro15,1/Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz/591594/17179869184/f0:18:98:1b:24:20
+    // E9EFB28F-053B-5C48-BAA0-E6A055AD806F/MacBookPro17,1/Apple M1/0/8589934592/3c:06:30:30:7d:35
     NSLog(@"joinedString %@", joinedString);
     NSString *deviceIdMD5 = [self calculateMD5:joinedString];
     // 36d7a97a91b82ce5bc8b2609d4e17dae
