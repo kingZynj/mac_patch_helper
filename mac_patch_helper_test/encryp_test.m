@@ -26,7 +26,13 @@
 
 
 
-
+- (void) test_tablepls_deviceid {
+    
+    NSString *deviceId = [EncryptionUtils generateTablePlusDeviceId];
+    // 默认    11:33:13.548069+0800    TablePlus    >>>>>> deviceId: ee4f1d1890b4eb49a5a4d7f195ca8b67
+    NSLog(@"deviceId :%@",deviceId);
+    
+}
 
 - (void) test_ccc_encryp {
 
@@ -95,7 +101,7 @@
     
     // 2025-05-04T09:22:47Z
     NSDictionary *jsonLicense = @{
-                @"deviceID": @"36d7a97a91b82ce5bc8b2609d4e17dae",
+                @"deviceID": @"16b8f4bdfd55d29f737427b4ec0c14d7",
                 @"type":@"licensed", // trial:licensed:revoked
                 @"product": @"SURGEMAC5",
                 @"expiresOnDate": @1746350567,
