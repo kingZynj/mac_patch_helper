@@ -405,4 +405,38 @@
     return nil;
 }
 
+/**
+ 将十六进制字符串转换为字节数组
+
+ @param hexString 十六进制字符串 (例如：6af37d82af81a284397e0accf283cb24)
+ @return 字节数组
+ */
++ (NSData *)hexStringToBytes:(NSString*)hexString{
+    NSMutableData *data = [NSMutableData data];
+    for (int i = 0; i < hexString.length; i += 2) {
+        NSString *hexByte = [hexString substringWithRange:NSMakeRange(i, 2)];
+        NSScanner *scanner = [NSScanner scannerWithString:hexByte];
+        unsigned int intValue;
+        [scanner scanHexInt:&intValue];
+        UInt8 byteValue = (UInt8)intValue;
+        [data appendBytes:&byteValue length:1];
+    }
+    return data;
+}
+
++ (NSString *)base64Encode:(NSData*)data {
+    return [data base64EncodedStringWithOptions:0];
+}
+
++ (NSString *)sha256Hash:(NSData *)data {
+    unsigned char hash[CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(data.bytes, (CC_LONG)data.length, hash);
+    NSMutableString *result = [NSMutableString string];
+    for (int i = 0; i < CC_SHA256_DIGEST_LENGTH; i++) {
+        [result appendFormat:@"%02x", hash[i]];
+    }
+    return result;
+}
+
+
 @end

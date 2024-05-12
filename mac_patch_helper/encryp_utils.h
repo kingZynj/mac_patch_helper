@@ -27,5 +27,10 @@
 + (NSData *)cccEncryptData:(NSData *)data withKey:(NSData *)key iv:(NSData *)iv;
 + (NSData *)cccDecryptData:(NSData *)data withKey:(NSData *)key iv:(NSData *)iv;
 
+
++ (NSData *)hexStringToBytes:(NSString*)hexString;
++ (NSString *)base64Encode:(NSData*)data;
++ (NSString *)sha256Hash:(NSData *)data;
+
 @end
 #endif /* encryp_utils_h */
