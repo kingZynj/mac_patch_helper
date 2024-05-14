@@ -138,7 +138,8 @@
     NSLog(@"deviceIdSha256: %@",deviceIdSha256);
     NSLog(@"deviceIdSha256Sub: %@",deviceIdSha256Sub);
     
-    unsigned char charArray[] = {1, 4, 2};
+//    unsigned char charArray[] = {1, 4, 2};
+    unsigned char charArray[] = {3, 4, 2};
     NSUInteger length = sizeof(charArray) / sizeof(unsigned char);
     NSString *string = @"NSExtension"; // 后面的字符串
     // 将字符串转换为NSData对象
