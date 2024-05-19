@@ -18,6 +18,7 @@
 #import <CommonCrypto/CommonCryptor.h>
 #include <IOKit/IOKitLib.h>
 
+
 @implementation EncryptionUtils
 
 + (NSString *)generateTablePlusDeviceId{
@@ -357,6 +358,87 @@
 }
 
 
++ (NSData *)rsaEncryptData:(NSData *)data withPublicKey:(NSString *)publicKeyString isPKCS8:(bool)is_pkcs8 {
+    NSArray *components = [publicKeyString componentsSeparatedByString:@"\n"];
+    NSMutableArray *cleanedComponents = [NSMutableArray arrayWithArray:components];
+    [cleanedComponents removeObject:@""];
+    [cleanedComponents removeObject:@"-----BEGIN PUBLIC KEY-----"];
+    [cleanedComponents removeObject:@"-----END PUBLIC KEY-----"];
+    
+    // 将剩余的字符串拼接为单个字符串
+    NSString *cleanedString = [cleanedComponents componentsJoinedByString:@""];
+    
+    // 解码 Base64 字符串为 NSData
+    NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:cleanedString options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    if (is_pkcs8) {
+        publicKeyData = [self removePublicKeyHeader:publicKeyData];
+    }
+    // 创建公钥字典
+    NSDictionary *attributes = @{
+        (__bridge id)kSecAttrKeyType: (__bridge id)kSecAttrKeyTypeRSA,
+        (__bridge id)kSecAttrKeyClass: (__bridge id)kSecAttrKeyClassPublic,
+    };
+    
+    SecKeyRef publicKey = NULL;
+    // 创建公钥对象
+    CFErrorRef error = NULL;
+    publicKey = SecKeyCreateWithData((__bridge CFDataRef)publicKeyData, (__bridge CFDictionaryRef)attributes, &error);
+ 
+    
+    NSData *encryptedData = (NSData *)CFBridgingRelease(
+        SecKeyCreateEncryptedData(publicKey,
+                                  kSecKeyAlgorithmRSAEncryptionPKCS1,
+                                  (__bridge CFDataRef)data,
+                                  (void *)&error)
+    );
+    if (encryptedData == nil) {
+        NSLog(@"Error: %@", error);
+    }
+    return encryptedData;
+}
+
++ (NSData *)rsaDecryptData:(NSData *)data withPrivateKey:(NSString *)privateKeyString isPKCS8:(bool)is_pkcs8{
+    NSArray *components = [privateKeyString componentsSeparatedByString:@"\n"];
+    NSMutableArray *cleanedComponents = [NSMutableArray arrayWithArray:components];
+    [cleanedComponents removeObject:@""];
+    [cleanedComponents removeObject:@"-----BEGIN RSA PRIVATE KEY-----"];
+    [cleanedComponents removeObject:@"-----END RSA PRIVATE KEY-----"];
+    [cleanedComponents removeObject:@"-----BEGIN PRIVATE KEY-----"];
+    [cleanedComponents removeObject:@"-----END PRIVATE KEY-----"];
+    
+    // 将剩余的字符串拼接为单个字符串
+    NSString *cleanedString = [cleanedComponents componentsJoinedByString:@""];
+    
+    // 解码 Base64 字符串为 NSData
+    NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:cleanedString options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    if (is_pkcs8) {
+        privateKeyData = [self removePrivateKeyHeader:privateKeyData];
+    }
+    // 创建公钥字典
+    NSDictionary *attributes = @{
+        (__bridge id)kSecAttrKeyType: (__bridge id)kSecAttrKeyTypeRSA,
+        (__bridge id)kSecAttrKeyClass: (__bridge id)kSecAttrKeyClassPrivate,
+    };
+    
+    SecKeyRef priavteKey = NULL;
+    // 创建公钥对象
+    CFErrorRef error = NULL;
+    priavteKey = SecKeyCreateWithData((__bridge CFDataRef)privateKeyData, (__bridge CFDictionaryRef)attributes, &error);
+ 
+    
+    NSData *decryptData = (NSData *)CFBridgingRelease(
+                                SecKeyCreateDecryptedData(priavteKey,
+                                  kSecKeyAlgorithmRSAEncryptionPKCS1,
+                                  (__bridge CFDataRef)data,
+                                  (void *)&error)
+    );
+    if (decryptData == nil) {
+        NSLog(@"Error: %@", error);
+    }
+    return decryptData;
+    
+    
+}
 + (NSData *)cccEncryptData:(NSData *)data withKey:(NSData *)key iv:(NSData *)iv {
     NSMutableData *encryptedData = [NSMutableData dataWithLength:data.length + kCCBlockSizeAES128];
     size_t encryptedDataLength = 0;

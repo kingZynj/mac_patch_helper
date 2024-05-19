@@ -21,6 +21,11 @@
 + (BOOL)verifySignatureWithBase64:(NSString *)policy signature:(NSString *)sign publicKey:(NSString *)publicKeyString isPKCS8:(bool)is_pkcs8;
 + (BOOL)verifySignatureWithByte:(NSData *)policyData signature:(NSData *)signData publicKey:(NSString *)publicKeyString isPKCS8:(bool)is_pkcs8;
 
+
++ (NSData *)rsaEncryptData:(NSData *)data withPublicKey:(NSString *)publicKeyString isPKCS8:(bool)is_pkcs8;
++ (NSData *)rsaDecryptData:(NSData *)data withPrivateKey:(NSString *)privateKeyString isPKCS8:(bool)is_pkcs8;
+
+    
 + (NSString *)convertToPEMFormat:(NSData *)keyData withKeyType:(NSString *)keyType;
 
 

@@ -221,16 +221,27 @@
     
     NSLog(@"textBase64 :%@",textBase64);
     
-    // 加密
+    // sign 生成
     NSData *sign = [EncryptionUtils generateSignatureForData:[text dataUsingEncoding:NSUTF8StringEncoding] privateKey:privateKeyStr isPKCS8:is_pkcs8];
     NSString *signBase64 = [sign base64EncodedStringWithOptions:0];
     
-    // 验证
+    // sign 验证
     NSLog(@"signBase64: %@",signBase64);
     Boolean verify = [EncryptionUtils verifySignatureWithBase64:textBase64 signature:signBase64 publicKey:publicKeyStr isPKCS8:is_pkcs8];
     NSLog(@"verify: %hhu",verify);
     
+    
+    NSString *test = @"123";
+    // rsa 加密
+    NSData* enData = [EncryptionUtils rsaEncryptData:[test dataUsingEncoding:NSUTF8StringEncoding] withPublicKey:publicKeyStr isPKCS8:is_pkcs8];
+    NSLog(@"enData : %@",enData);
+    // rsa 解密
+    NSData* deData = [EncryptionUtils rsaDecryptData:enData withPrivateKey:privateKeyStr isPKCS8:is_pkcs8];
+    NSLog(@"deData : %@",deData);
+    
 }
+
+
 
 
 - (void)testPerformanceExample {
