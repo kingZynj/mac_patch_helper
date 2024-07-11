@@ -16,6 +16,7 @@
 		B548A72B2BE5DF2B00BE51E7 /* encryp_utils.h in Sources */ = {isa = PBXBuildFile; fileRef = B5C1B8BE2BE5056E003D222A /* encryp_utils.h */; };
 		B548A72C2BE5DF2B00BE51E7 /* encryp_utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C1B8BF2BE505B1003D222A /* encryp_utils.m */; };
 		B585B3C82BC4CDE8005CD878 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B585B3C72BC4CDE8005CD878 /* utils.m */; };
+		B59B37FF2BF5BBC3008ABD43 /* ClzTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B59B37FE2BF5BBC3008ABD43 /* ClzTest.m */; };
 		B5C1B8C02BE505B1003D222A /* encryp_utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C1B8BF2BE505B1003D222A /* encryp_utils.m */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		B548A7232BE5DE1100BE51E7 /* mac_patch_helper_test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mac_patch_helper_test.m; sourceTree = "<group>"; };
 		B585B3C62BC4CDD2005CD878 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		B585B3C72BC4CDE8005CD878 /* utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
+		B59B37FE2BF5BBC3008ABD43 /* ClzTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClzTest.m; sourceTree = "<group>"; };
 		B5C1B8BE2BE5056E003D222A /* encryp_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = encryp_utils.h; sourceTree = "<group>"; };
 		B5C1B8BF2BE505B1003D222A /* encryp_utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = encryp_utils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,12 +63,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B512E3602BF9BA6600C3D07C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B512E3612BF9BA6600C3D07C /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B52B554D2BC4CC21002F50CC = {
 			isa = PBXGroup;
 			children = (
 				B52B55582BC4CC21002F50CC /* mac_patch_helper */,
 				B548A7222BE5DE1100BE51E7 /* mac_patch_helper_test */,
 				B52B55572BC4CC21002F50CC /* Products */,
+				B512E3602BF9BA6600C3D07C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +107,7 @@
 			children = (
 				B52513E02BE738D8006D4084 /* encryp_test.m */,
 				B548A7232BE5DE1100BE51E7 /* mac_patch_helper_test.m */,
+				B59B37FE2BF5BBC3008ABD43 /* ClzTest.m */,
 			);
 			path = mac_patch_helper_test;
 			sourceTree = "<group>";
@@ -203,6 +215,7 @@
 				B548A7292BE5DF2B00BE51E7 /* utils.h in Sources */,
 				B548A72A2BE5DF2B00BE51E7 /* utils.m in Sources */,
 				B548A72B2BE5DF2B00BE51E7 /* encryp_utils.h in Sources */,
+				B59B37FF2BF5BBC3008ABD43 /* ClzTest.m in Sources */,
 				B548A72C2BE5DF2B00BE51E7 /* encryp_utils.m in Sources */,
 				B548A7242BE5DE1100BE51E7 /* mac_patch_helper_test.m in Sources */,
 			);
